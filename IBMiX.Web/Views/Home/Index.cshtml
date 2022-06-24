@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Books</h1>
+    <div>
+        <table id="books">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Author</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Price</th>
+                    <th>Publish date</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(IBook book in Model)
+                {
+                    <tr>
+                        <td>@book.Id</td>
+                        <td>@book.Author</td>
+                        <td>@book.Title</td>
+                        <td>@book.Genre</td>
+                        <td>@book.Price</td>
+                        <td>@book.PublishDate.ToShortDateString()</td>
+                        <td>@book.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
