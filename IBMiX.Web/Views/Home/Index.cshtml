@@ -64,11 +64,11 @@
         <p id="returnModalData"></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <form method="post" action="/Home/ReturnBook">
             <input name="bookId" id="returnBookId" type="hidden" value=""/>
             <input type="submit" value="Return" class="btn btn-primary"/>
         </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -93,11 +93,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <form method="post" action="/Home/BorrowBook" id="borrowForm">
             <input name="bookId" id="borrowBookId" type="hidden" value=""/>
             <input type="submit" value="Borrow" class="btn btn-success"/>
         </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

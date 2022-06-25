@@ -12,12 +12,10 @@ namespace IBMiX.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly IMapper mapper;
         private List<IUser> users;
 
-        public UserRepository(IMapper mapper)
+        public UserRepository()
         {
-            this.mapper = mapper;
             users = LoadUsers();
         }
 

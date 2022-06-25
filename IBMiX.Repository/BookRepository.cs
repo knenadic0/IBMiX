@@ -14,13 +14,11 @@ namespace IBMiX.Repository
         private List<IBook> books;
         private readonly string xmlPath;
         private readonly IMapper mapper;
-        private readonly IUserRepository userRepository;
 
-        public BookRepository(IMapper mapper, IUserRepository userRepository)
+        public BookRepository(IMapper mapper)
         {
             xmlPath = Path.GetDirectoryName(Environment.CurrentDirectory) + "\\books.xml";
             this.mapper = mapper;
-            this.userRepository = userRepository;
             books = LoadBooks();
         }
 

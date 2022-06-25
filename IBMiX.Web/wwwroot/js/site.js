@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    $('#books').DataTable();
 
     $('button.returnButton').click(function () {
         var title = $(this).closest('tr').find('td.book-title').text();
@@ -17,4 +16,6 @@
         $('#borrowModalData').text("Borrow " + title + " to:");
         $('#borrowBookId').attr("value", id);
     });
+
+    $('#books').DataTable();
 });

@@ -33,7 +33,7 @@ namespace IBMiX.Service
             }
         }
 
-        public IEnumerable<IBook> GetBooks()
+        public List<IBook> GetBooks()
         {
             return repository.GetBooks();
         }
