@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IBMiX.Models.Common\IBMiX.Model.Common.csproj" />
+    <ProjectReference Include="..\IBMiX.Models\IBMiX.Model.csproj" />
   </ItemGroup>
 
 </Project>

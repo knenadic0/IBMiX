@@ -12,7 +12,8 @@ namespace IBMiX.Repository
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<BookRepository>().As<IBookRepository>();
+            builder.RegisterType<BookRepository>().As<IBookRepository>().SingleInstance();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().SingleInstance();
         }
     }
 }

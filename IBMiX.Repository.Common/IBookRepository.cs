@@ -4,6 +4,7 @@ namespace IBMiX.Repository.Common
 {
     public interface IBookRepository
     {
-        IEnumerable<IBook> GetBooks();
+        List<IBook> GetBooks();
+        IBook GetBook(string id);
     }
 }

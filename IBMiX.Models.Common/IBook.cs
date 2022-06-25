@@ -12,5 +12,6 @@ namespace IBMiX.Model.Common
         float Price { get; set; }
         DateTime PublishDate { get; set; }
         string Description { get; set; }
+        IUser Borrowed { get; set; }
     }
 }

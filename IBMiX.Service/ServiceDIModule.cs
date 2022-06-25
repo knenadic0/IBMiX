@@ -13,6 +13,7 @@ namespace IBMiX.Service
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<BookService>().As<IBookService>();
+            builder.RegisterType<UserService>().As<IUserService>();
         }
     }
 }

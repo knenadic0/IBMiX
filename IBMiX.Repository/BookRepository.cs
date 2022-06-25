@@ -14,11 +14,13 @@ namespace IBMiX.Repository
         private List<IBook> books;
         private readonly string xmlPath;
         private readonly IMapper mapper;
+        private readonly IUserRepository userRepository;
 
-        public BookRepository(IMapper mapper)
+        public BookRepository(IMapper mapper, IUserRepository userRepository)
         {
             xmlPath = Path.GetDirectoryName(Environment.CurrentDirectory) + "\\books.xml";
             this.mapper = mapper;
+            this.userRepository = userRepository;
             books = LoadBooks();
         }
 
@@ -33,7 +35,8 @@ namespace IBMiX.Repository
                 file.Close();
                 foreach (var item in readXml.Books)
                 {
-                    result.Add(mapper.Map<IBook>(item));
+                    var book = mapper.Map<IBook>(item);
+                    result.Add(book);
                 }
                 return result;
             }
@@ -43,9 +46,14 @@ namespace IBMiX.Repository
             }
         }
 
-        public IEnumerable<IBook> GetBooks()
+        public List<IBook> GetBooks()
         {
             return books;
+        }
+
+        public IBook GetBook(string id)
+        {
+            return books.FirstOrDefault(x => x.Id.Equals(id));
         }
     }
 }

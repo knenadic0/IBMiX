@@ -13,7 +13,6 @@ namespace IBMiX.Model
     {
         public ModelsProfile()
         {
-            //CreateMap<Book, IBook>().ReverseMap();
             CreateMap<BookXml, IBook>().As(typeof(Book));
             CreateMap<BookXml, Book>()
                 .ForMember(dest => dest.Author, opt => opt.MapFrom(src => src.Author.Text))

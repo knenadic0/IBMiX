@@ -6,7 +6,7 @@
 <div class="text-center">
     <h1 class="display-4">Books</h1>
     <div>
-        <table id="books">
+        <table id="books" class="table table-striped text-start">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -16,22 +16,91 @@
                     <th>Price</th>
                     <th>Publish date</th>
                     <th>Description</th>
+                    <th>Borrowed</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach(IBook book in Model)
                 {
                     <tr>
-                        <td>@book.Id</td>
+                        <td class="book-id">@book.Id</td>
                         <td>@book.Author</td>
-                        <td>@book.Title</td>
+                        <td class="book-title">@book.Title</td>
                         <td>@book.Genre</td>
                         <td>@book.Price</td>
                         <td>@book.PublishDate.ToShortDateString()</td>
                         <td>@book.Description</td>
+                        <td class="book-borrowed">@book.Borrowed?.FullName</td>
+                        <td>
+                            @if (book.Borrowed != null)
+                            {
+                                <button type="button" class="btn btn-primary returnButton" data-bs-toggle="modal" data-bs-target="#returnModal">
+                                    Return
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-success borrowButton" data-bs-toggle="modal" data-bs-target="#borrowModal">
+                                    Borrow
+                                </button>
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+
+<div class="modal fade" tabindex="-1" id="returnModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Return book</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="returnModalData"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form method="post" action="/Home/ReturnBook">
+            <input name="bookId" id="returnBookId" type="hidden" value=""/>
+            <input type="submit" value="Return" class="btn btn-primary"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="borrowModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Borrow book</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="borrowModalData"></p>
+        <div>
+            <select name="userId" class="form-select" form="borrowForm">
+                @foreach(IUser user in (List<IUser>)ViewData["Users"])
+                {
+                    <option value="@user.Id">@user.FullName</option>
+                }
+            </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form method="post" action="/Home/BorrowBook" id="borrowForm">
+            <input name="bookId" id="borrowBookId" type="hidden" value=""/>
+            <input type="submit" value="Borrow" class="btn btn-success"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
